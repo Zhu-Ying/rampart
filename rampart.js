@@ -6,13 +6,19 @@ const { getInitialConfig } = require("./server/config/getInitialConfig");
 const { processExistingData } = require("./server/startUp");
 const { startBasecalledFilesWatcher } = require("./server/watchBasecalledFiles");
 const Datastore = require("./server/datastore").default;
+const { updateProtocols } = require("./server/updateProtocols");
 const { fatal, trace } = require('./server/utils');
 
 const main = async () => {
     try {
         const args = parser.parseArgs();
         if (args.verbose) global.VERBOSE = true;
-        
+
+        if (args.updateProtocols) {
+          await updateProtocols();
+          return;
+        }
+
         const {config, pipelineRunners} = getInitialConfig(args);
         global.config = config;
         global.pipelineRunners = pipelineRunners;

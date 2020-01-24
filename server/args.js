@@ -44,6 +44,13 @@ const development = parser.addArgumentGroup({title: 'Development commands'});
 development.addArgument('--devClient', {action: "storeTrue", help: "don't serve build (client)"});
 development.addArgument('--mockFailures', {action: "storeTrue", help: "stochastic failures (annotating / parsing)"});
 
+
+/* ---------------- PROTOCOL REGISTRY  -------- */
+const protocols = parser.addArgumentGroup({title: 'Commands related to the protocol registry'});
+protocols.addArgument('--updateProtocols', {action: "storeTrue", help: "Update the protocol registry"});
+
+
+
 /* ----------------- DEPRECATED -------------------- */
 // const deprecated = parser.addArgumentGroup({title: 'Deprecated commands'});
 // config.addArgument('--referenceConfigPath', {help: "JSON reference config"});
